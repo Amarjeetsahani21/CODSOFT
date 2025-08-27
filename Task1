@@ -1,0 +1,60 @@
+def display_menu():
+    print("\nTo-Do List Menu:")
+    print("1. Add a new task")
+    print("2. View all tasks")
+    print("3. Mark a task as complete")
+    print("4. Delete a task")
+    print("5. Exit")
+
+def add_task(todo_list):
+    task = input("Enter the task you want to add: ")
+    todo_list[task] = "Incomplete"
+    print(f'Task "{task}" has been added.')
+
+def view_tasks(todo_list):
+    if not todo_list:
+        print("Your to-do list is empty.")
+    else:
+        print("\nYour Current To-Do List:")
+        for task, status in todo_list.items():
+            print(f"- {task} [{status}]")
+
+def mark_complete(todo_list):
+    view_tasks(todo_list)
+    task = input("Enter the task you want to mark as complete: ")
+    if task in todo_list:
+        todo_list[task] = "Complete"
+        print(f'Task "{task}" has been marked as complete.')
+    else:
+        print("Task not found.")
+
+def delete_task(todo_list):
+    view_tasks(todo_list)
+    task = input("Enter the task you want to delete: ")
+    if task in todo_list:
+        del todo_list[task]
+        print(f'Task "{task}" has been deleted.')
+    else:
+        print("Task not found.")
+
+def main():
+    todo_list = {}
+    while True:
+        display_menu()
+        choice = input("Enter your choice (1-5): ")
+        if choice == '1':
+            add_task(todo_list)
+        elif choice == '2':
+            view_tasks(todo_list)
+        elif choice == '3':
+            mark_complete(todo_list)
+        elif choice == '4':
+            delete_task(todo_list)
+        elif choice == '5':
+            print("Exiting the To-Do List application. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please enter a number between 1 and 5.")
+
+if __name__ == "__main__":
+    main()
